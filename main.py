@@ -24,6 +24,7 @@ class Jeu:
                 self.lemmings.append(Lemmings(choice([1,-1])))
             else :
                 tour(self)
+                
 class Lemmings :
     def __init__(self,direction):
         self.l = 0
@@ -42,9 +43,6 @@ class Lemmings :
     def sort(self):
         pass        
 
-class Case :
- def __init__(self,caractere):
-    pass
 
 class Case :
     def __init__(self,caractere:str):
@@ -58,7 +56,7 @@ class Case :
         else :
             return False
     def arrivee(self, lem:Lemmings):
-        self.caractere = lem.str
+        self.caractere = str(lem)
     def depart(self) :
         self.caractere = self.type
 
