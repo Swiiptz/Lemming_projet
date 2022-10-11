@@ -10,15 +10,8 @@ class Lemmings :
 
 
 class Case :
-    def __init__(self,x,y,grotte,liste_lemmings):
-        self.terrain = grotte[x][y]
-        for i in liste_lemmings :
-            if x == i.x and y == i.y :
-                self.lemming = i
-            else :
-                self.lemming = None 
+    def __init__(self,caractere:str):
         
-
 
 
 class Jeu :
