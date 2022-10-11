@@ -10,6 +10,7 @@ class Lemmings :
 
 
 class Case :
+<<<<<<< HEAD
     def __init__(self,x,y,grotte,liste_lemmings):
         self.terrain = grotte[x][y]
         for i in liste_lemmings :
@@ -18,6 +19,11 @@ class Case :
             else :
                 self.lemming = None 
         
+=======
+    def __init__(self,caractere):
+        self.type = caractere
+    
+>>>>>>> dev_S
 
 
 
@@ -25,5 +31,9 @@ class Jeu :
     def __init__(self,grotte,lemmings):
         self.grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()]
 
+<<<<<<< HEAD
 
 print(grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()])
+=======
+print([[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()])
+>>>>>>> dev_S
