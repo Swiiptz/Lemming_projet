@@ -2,38 +2,37 @@ carte = open("carte.txt")
 liste_lemmings = []
 
 
+class Jeu:
+    def __init__(self):
+        self.grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()]
+        
+    def affiche(self):
+        for n_lemming in self.grotte:
+            if n_lemming == Lemmings:
+                print("x")
+                continue
+            print(n_lemming)
 class Lemmings :
-    def __init__(self,x,y):
-        self.x = x
-        self.y = y
-        liste_lemmings.append(self)
+    def __init__(self,direction):
+        self.l = 0
+        self.c = 1
+        self.d = direction
+        self.jeu = Jeu
+    def __str__(self):
+        if self.d == 1:
+            return ">"
+        if self.d == -1:
+            return "<"
+    def action(self):
+        if self.jeu[self.l,self]:
 
+            self.l +=self.d
+    def sort(self):
+        pass        
 
 class Case :
-<<<<<<< HEAD
-    def __init__(self,x,y,grotte,liste_lemmings):
-        self.terrain = grotte[x][y]
-        for i in liste_lemmings :
-            if x == i.x and y == i.y :
-                self.lemming = i
-            else :
-                self.lemming = None 
-        
-=======
-    def __init__(self,caractere):
+ def __init__(self,caractere):
         self.type = caractere
     
->>>>>>> dev_S
-
-
-
-class Jeu :
-    def __init__(self,grotte,lemmings):
-        self.grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()]
-
-<<<<<<< HEAD
 
 print(grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()])
-=======
-print([[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()])
->>>>>>> dev_S
