@@ -18,7 +18,7 @@ class Lemmings :
 
             self.l +=self.d
     def sort(self):
-        pass #en chantier       
+        del self     
 
 class Case :
     def __init__(self,caractere:str):
@@ -69,7 +69,7 @@ class Jeu:
             else :
                 i.direction *= -1 #sinon change de direction
             if grotte[i.l][i.c].type == "O" : #si le lemming est arrivé à la sortie, on le dégage
-                del i
+                i.sort()
         self.affiche()
             
 
