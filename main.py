@@ -9,8 +9,9 @@ class Lemmings :
 
 
 class Case :
-    def __init__(self):
-        pass
+    def __init__(self,caractere):
+        self.type = caractere
+    
 
 
 
@@ -18,4 +19,4 @@ class Jeu :
     def __init__(self,grotte,lemmings):
         self.grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()]
 
-
+print([[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()])
