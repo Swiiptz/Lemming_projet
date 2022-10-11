@@ -47,21 +47,22 @@ class Jeu:
         self.demarre()
 
     def affiche(self):
-        for case_l in self.grotte:
-            for case_l_c in case_l :
+        copie_carte = self.grotte
+
+        for case_l in copie_carte: #on prend la ligne
+            ligne_temp = ""
+            for case_l_c in case_l : #puis case par case
                 if case_l_c == Lemmings:
                     if case_l_c.direction == 1 :
-                        print(">")
+                        ligne_temp += ">"
                     else :
-                        print("<")
-                    print("\n")
+                        ligne_temp += "<"
                     continue
-                
-                #bloc de test
-                print(type(case_l_c))
-                print(case_l_c,"\n")
-                assert case_l_c == Case, "pas type Case"
-                
+
+                ligne_temp += case_l_c.caractere
+            print(ligne_temp)
+
+
 
     def tour(self):
         grotte = self.grotte
