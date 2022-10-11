@@ -1,12 +1,10 @@
+from random import choice
 carte = open("carte.txt")
 liste_lemmings = []
 
 
 class Lemmings :
-    def __init__(self,x,y):
-        self.x = x
-        self.y = y
-        liste_lemmings.append(self)
+    pass
 
 class Case :
     def __init__(self,caractere:str):
@@ -31,8 +29,27 @@ class Case :
 class Jeu :
     def __init__(self,grotte,lemmings):
         self.grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()]
+        self.lemmings = []
+    def tour(self):
+        pass
+    def affiche(self):
+        pass
+    def demarre(self):
+        commande = ""
+        while commande != "q" :
+            print("Que voulez-vous faire :\nl: ajouter un lemming\nq : quitter\nEntrée pour jouer")
+            commande = input()
+            if commande == "q" :
+                break
+            if commande == "l":
+                self.lemmings.append(Lemmings(choice([1,-1])))
+            else :
+                tour(self)
 
 
 
-print([[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()])
+
+
+
+
 
