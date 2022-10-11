@@ -7,20 +7,22 @@ class Lemmings :
         self.x = x
         self.y = y
         liste_lemmings.append(self)
-    def 
 
 class Case :
-    def __init__(self,caractere):
+    def __init__(self,caractere:str):
         self.type = caractere
+        self.caractere = self.type
+    def __str__(self):
+        return str(self.caractere)
     def libre(self):
         if self.type == " " :
             return True 
         else :
             return False
-    def arrivee(self, lem):
-        self.caractere = lem.str()
+    def arrivee(self, lem:Lemmings):
+        self.caractere = lem.str
     def depart(self) :
-        self.caractere = self.type()
+        self.caractere = self.type
 
     
 
