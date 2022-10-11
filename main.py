@@ -56,6 +56,7 @@ class Jeu:
                         print("<")
                     print("\n")
                     continue
+                
                 #bloc de test
                 print(type(case_l_c))
                 print(case_l_c,"\n")
