@@ -9,7 +9,9 @@ class Lemmings :
 
 
 class Case :
-    def __init__(self,x,y):
+    def __init__(self,x,y,lemming):
+        self.terrain = grotte[x][y]
+        self.lemming = 
         
 
 
