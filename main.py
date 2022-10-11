@@ -1,5 +1,4 @@
 from random import choice
-from zipfile import PyZipFile
 carte = open("carte.txt")
 
     
