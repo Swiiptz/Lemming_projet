@@ -44,16 +44,23 @@ class Jeu:
     def __init__(self):
         self.grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()]
         self.lemmings = []
+        self.demarre()
 
     def affiche(self):
-        for n_lemming in self.grotte:
-            if n_lemming == Lemmings:
-                if n_lemming.direction == 1 :
-                    print(">")
-                else :
-                    print("<")
-                continue
-            print(n_lemming)
+        for case_l in self.grotte:
+            for case_l_c in case_l :
+                if case_l_c == Lemmings:
+                    if case_l_c.direction == 1 :
+                        print(">")
+                    else :
+                        print("<")
+                    print("\n")
+                    continue
+                #bloc de test
+                print(type(case_l_c))
+                print(case_l_c,"\n")
+                assert case_l_c == Case, "pas type Case"
+                
 
     def tour(self):
         grotte = self.grotte
@@ -77,12 +84,13 @@ class Jeu:
     def demarre(self):
         commande = ""
         while commande != "q" :
-            print("Que voulez-vous faire :\nl: ajouter un lemming\nq : quitter\nEntrée pour jouer")
+            print(f"Que voulez-vous faire :\nl: ajouter un lemming et jouer (nb de lemmings:{len(self.lemmings)})\nq : quitter\nEntrée pour jouer")
             commande = input()
             if commande == "q" :
                 break
             if commande == "l":
                 self.lemmings.append(Lemmings(choice([1,-1])))
+                self.tour()
             else :
                 self.tour()
 
@@ -91,5 +99,5 @@ class Jeu:
 
 
 
-
+test = Jeu()
 
