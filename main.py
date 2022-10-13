@@ -1,22 +1,25 @@
-from random import choice
 carte = open("carte.txt")
 
     
 class Lemmings :
-    def __init__(self,direction):
+    def __init__(self):
         self.l = 0
         self.c = 1
-        self.d = direction
-        self.jeu = Jeu
+        self.d = 1
+        self.jeu = Jeu(carte)
+        self.carte = self.jeu.grotte
     def __str__(self):
         if self.d == 1:
             return ">"
         if self.d == -1:
             return "<"
     def action(self):
-        if self.jeu[self.l,self]:
-
-            self.l +=self.d
+        if self.carte[self.l+1][self.c].libre():
+            self.l +=1
+        if self.carte[self.l][self.c+1].libre() and :
+            self.d *=-1
+        if self.carte[self.l][self.c+1].libre():
+            self.c += self.d
     def sort(self):
         del self     
 
@@ -41,8 +44,8 @@ class Case :
         self.caractere = self.type
 
 class Jeu:
-    def __init__(self):
-        self.grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()]
+    def __init__(self,terrain):
+        self.grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in terrain.readlines()]
         self.lemmings = []
         self.demarre()
 
@@ -68,7 +71,6 @@ class Jeu:
 
 
     def tour(self):
-        grotte = self.grotte
         for i in self.lemmings :
             i.action()
         self.affiche()
@@ -83,7 +85,7 @@ class Jeu:
             if commande == "q" :
                 break
             if commande == "l":
-                self.lemmings.append(Lemmings(choice([1,-1])))
+                self.lemmings.append(Lemmings())
                 self.tour()
             else :
                 self.tour()
@@ -93,5 +95,5 @@ class Jeu:
 
 
 
-test = Jeu()
+test = Jeu(carte)
 
