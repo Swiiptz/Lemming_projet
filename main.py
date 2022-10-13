@@ -48,7 +48,8 @@ class Jeu:
 
     def affiche(self):
         copie_carte = self.grotte
-
+        for i in self.lemmings :
+            copie_carte[i.l][i.c] = i
         for case_l in copie_carte: #on prend la ligne
             ligne_temp = ""
             for case_l_c in case_l : #puis case par case
@@ -57,9 +58,9 @@ class Jeu:
                         ligne_temp += ">"
                     else :
                         ligne_temp += "<"
-                    continue
-
-                ligne_temp += case_l_c.caractere
+                else : 
+                    print(case_l_c.caractere)
+                    ligne_temp += case_l_c.caractere
             print(ligne_temp)
 
 
