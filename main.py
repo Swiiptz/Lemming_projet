@@ -48,19 +48,21 @@ class Jeu:
 
     def affiche(self):
         copie_carte = self.grotte
+        for i in copie_carte :
+            for z in i :
+                z = z.caractere
         for i in self.lemmings :
-            copie_carte[i.l][i.c] = i
+            if i.d == 1 :
+                dir = ">"
+            else :
+                dir = "<"
+            print(i.l,i.c)
+            copie_carte[i.l][i.c] = dir
+
         for case_l in copie_carte: #on prend la ligne
             ligne_temp = ""
             for case_l_c in case_l : #puis case par case
-                if case_l_c == Lemmings:
-                    if case_l_c.direction == 1 :
-                        ligne_temp += ">"
-                    else :
-                        ligne_temp += "<"
-                else : 
-                    print(case_l_c.caractere)
-                    ligne_temp += case_l_c.caractere
+                ligne_temp += str(case_l_c)
             print(ligne_temp)
 
 
