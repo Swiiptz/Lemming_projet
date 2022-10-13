@@ -9,9 +9,12 @@ class Jeu:
     def affiche(self):
         """affiche la carte actuelle ainsi que les lemmings qui sont dessus"""
         copie_carte = self.grotte
+        
         for i in copie_carte : #on transforme les cases en str
             for z in i :
-                z = z.caractere
+                if type(z) != str :
+                    z = z.caractere
+
         for i in self.lemmings : #on imprime les lemmings en str sur la carte
             if i.d == 1 :
                 dir = ">"
@@ -64,9 +67,9 @@ class Lemmings :
     def action(self):
         if self.carte[self.l+1][self.c].libre():
             self.l +=1
-        #if self.carte[self.l][self.c+1].libre() and :
+        #elif self.carte[self.l][self.c+1].libre() and :
         #    self.d *=-1
-        if self.carte[self.l][self.c+1].libre():
+        elif self.carte[self.l][self.c+1].libre():
             self.c += self.d
     def sort(self):
         del self     
@@ -80,7 +83,7 @@ class Case :
         return str(self.caractere)
 
     def libre(self):
-        if self.type == " " or "O":
+        if self.type == (" " or "O"):
             return True 
         else :
             return False
