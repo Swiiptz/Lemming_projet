@@ -70,18 +70,7 @@ class Jeu:
     def tour(self):
         grotte = self.grotte
         for i in self.lemmings :
-            l = i.l # on get les coos du lemming
-            c = i.c
-            if grotte[l-1][c].libre() == True : #check si la case du dessous est libre, si oui descendre
-                i.l -= 1
-            elif grotte[l][c+1].libre() == True and i.direction == 1 : #si libre à droite et direction droite, aller à droite
-                i.c += 1
-            elif grotte[l][c-1].libre() == True and i.direction == -1 : #pareil mais à gauche
-                i.c -= 1
-            else :
-                i.direction *= -1 #sinon change de direction
-            if grotte[i.l][i.c].type == "O" : #si le lemming est arrivé à la sortie, on le dégage
-                i.sort()
+            i.action()
         self.affiche()
             
 
