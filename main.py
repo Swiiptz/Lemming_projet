@@ -1,5 +1,5 @@
 from random import choice
-carte = "carte.txt"
+carte = open("carte.txt")
 liste_lemmings = []
 
 class Jeu:
@@ -21,21 +21,9 @@ class Jeu:
                 ligne_temp += case_l_c.caractere
             print(ligne_temp)
     def tour(self):
-        grotte = self.grotte
-        for i in self.lemmings :
-            l = i.l # on get les coos du lemming
-            c = i.c
-            if grotte[l-1][c].libre() == True : #check si la case du dessous est libre, si oui descendre
-                i.l -= 1
-            elif grotte[l][c+1].libre() == True and i.direction == 1 : #si libre à droite et direction droite, aller à droite
-                i.c += 1
-            elif grotte[l][c-1].libre() == True and i.direction == -1 : #pareil mais à gauche
-                i.c -= 1
-            else :
-                i.direction *= -1 #sinon change de direction
-            if grotte[i.l][i.c].type == "O" : #si le lemming est arrivé à la sortie, on le dégage
-                i.sort()
+        self.action()
         self.affiche()
+
     
     def demarre(self):
         commande = ""
@@ -65,10 +53,13 @@ class Lemmings :
     def action(self):
         if self.carte[self.l+1][self.c].libre():
             self.l +=1
-        if self.carte[self.l][self.c+1].libre() and :
+        if self.carte[self.l-1][self.c].libre()==False:
+            self.l -=1
+        if self.carte[self.l][self.c+1].libre() and self.d == 1:
             self.d *=-1
-        if self.carte[self.l][self.c+1].libre():
-            self.c += self.d
+        if self.carte[self.l][self.c-1].libre() and self.d == -1:
+            self.d*=-1
+        self.c += self.d
     def sort(self):
         del self     
 
@@ -82,7 +73,7 @@ class Case :
         return str(self.caractere)
 
     def libre(self):
-        if self.type == " " or "O":
+        if self.type == " " or "O" or self == Lemmings():
             return True 
         else :
             return False
