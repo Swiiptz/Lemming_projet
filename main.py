@@ -1,13 +1,61 @@
 carte = open("carte.txt")
 
-    
+class Jeu:
+    def __init__(self,terrain):
+        self.grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in terrain.readlines()]
+        self.lemmings = []
+        self.demarre()
+
+    def affiche(self):
+        """affiche la carte actuelle ainsi que les lemmings qui sont dessus"""
+        copie_carte = self.grotte
+        for i in copie_carte : #on transforme les cases en str
+            for z in i :
+                z = z.caractere
+        for i in self.lemmings : #on imprime les lemmings en str sur la carte
+            if i.d == 1 :
+                dir = ">"
+            else :
+                dir = "<"
+            print(i.l,i.c)
+            copie_carte[i.l][i.c] = dir
+
+        #on affiche la carte :
+        for case_l in copie_carte: #on prend la ligne
+            ligne_temp = ""
+            for case_l_c in case_l : #puis case par case
+                ligne_temp += str(case_l_c)
+            print(ligne_temp)
+
+
+    def tour(self):
+        """joue un tour"""
+        for i in self.lemmings :
+            i.action()
+        self.affiche()
+            
+
+    def demarre(self):
+        """lance le jeu"""
+        commande = ""
+        while commande != "q" :
+            print(f"Que voulez-vous faire :\nl: ajouter un lemming et jouer (nb de lemmings:{len(self.lemmings)})\nq : quitter\nEntrée pour jouer")
+            commande = input()
+            if commande == "q" :
+                break
+            if commande == "l":
+                self.lemmings.append(Lemmings(self.grotte))
+                self.tour()
+            else :
+                self.tour()
+
+
 class Lemmings :
-    def __init__(self):
+    def __init__(self, grotte):
         self.l = 0
         self.c = 1
         self.d = 1
-        self.jeu = Jeu(carte)
-        self.carte = self.jeu.grotte
+        self.carte = grotte
     def __str__(self):
         if self.d == 1:
             return ">"
@@ -16,8 +64,8 @@ class Lemmings :
     def action(self):
         if self.carte[self.l+1][self.c].libre():
             self.l +=1
-        if self.carte[self.l][self.c+1].libre() and :
-            self.d *=-1
+        #if self.carte[self.l][self.c+1].libre() and :
+        #    self.d *=-1
         if self.carte[self.l][self.c+1].libre():
             self.c += self.d
     def sort(self):
@@ -43,57 +91,5 @@ class Case :
     def depart(self) :
         self.caractere = self.type
 
-class Jeu:
-    def __init__(self,terrain):
-        self.grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in terrain.readlines()]
-        self.lemmings = []
-        self.demarre()
-
-    def affiche(self):
-        copie_carte = self.grotte
-        for i in copie_carte :
-            for z in i :
-                z = z.caractere
-        for i in self.lemmings :
-            if i.d == 1 :
-                dir = ">"
-            else :
-                dir = "<"
-            print(i.l,i.c)
-            copie_carte[i.l][i.c] = dir
-
-        for case_l in copie_carte: #on prend la ligne
-            ligne_temp = ""
-            for case_l_c in case_l : #puis case par case
-                ligne_temp += str(case_l_c)
-            print(ligne_temp)
-
-
-
-    def tour(self):
-        for i in self.lemmings :
-            i.action()
-        self.affiche()
-            
-
-
-    def demarre(self):
-        commande = ""
-        while commande != "q" :
-            print(f"Que voulez-vous faire :\nl: ajouter un lemming et jouer (nb de lemmings:{len(self.lemmings)})\nq : quitter\nEntrée pour jouer")
-            commande = input()
-            if commande == "q" :
-                break
-            if commande == "l":
-                self.lemmings.append(Lemmings())
-                self.tour()
-            else :
-                self.tour()
-
-
-
-
-
 
 test = Jeu(carte)
-
