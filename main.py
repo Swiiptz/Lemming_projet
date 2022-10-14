@@ -43,7 +43,7 @@ class Case :
 
     def __str__(self):
         if self.Lemming !=None :
-            return self.Lemming.dir
+            return str(self.Lemming)
         else : 
             return self.caractere
 
