@@ -26,7 +26,7 @@ class Lemmings :
 
 class Case :
     def __init__(self):
-        self.type = caractere
+        self.type = 1 #en chantier
 
     def __str__(self):
         return self.caractere
@@ -88,4 +88,4 @@ class Jeu:
 
 
 
-test = Jeu(carte
+test = Jeu(carte)
