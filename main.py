@@ -16,20 +16,22 @@ class Lemmings :
     def action(self):
         if self.carte[self.l+1][self.c].libre():
             self.l +=1
-        if self.carte[self.l][self.c+1].libre() and :
+        if self.carte[self.l-1][self.c].libre()==False:
+            self.l -=1
+        if self.carte[self.l][self.c+1].libre() and self.d == 1:
             self.d *=-1
-        if self.carte[self.l][self.c+1].libre():
-            self.c += self.d
+        if self.carte[self.l][self.c-1].libre() and self.d == -1:
+            self.d*=-1
+        self.c += self.d
     def sort(self):
         del self     
 
 class Case :
-    def __init__(self,caractere:str):
+    def __init__(self):
         self.type = caractere
-        self.caractere = self.type
 
     def __str__(self):
-        return str(self.caractere)
+        return self.caractere
 
     def libre(self):
         if self.type == " " or "O":
@@ -47,20 +49,12 @@ class Jeu:
     def __init__(self,terrain):
         self.grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in terrain.readlines()]
         self.lemmings = []
-        self.demarre()
 
     def affiche(self):
         copie_carte = self.grotte
-        for i in copie_carte :
-            for z in i :
-                z = z.caractere
-        for i in self.lemmings :
-            if i.d == 1 :
-                dir = ">"
-            else :
-                dir = "<"
-            print(i.l,i.c)
-            copie_carte[i.l][i.c] = dir
+
+        for lemming in self.lemming : #on remplace les cases par les lemmings aux bonnes cos
+            copie_carte[lemming.l][lemming.d] = lemming
 
         for case_l in copie_carte: #on prend la ligne
             ligne_temp = ""
@@ -95,5 +89,4 @@ class Jeu:
 
 
 
-test = Jeu(carte)
-
+test = Jeu(carte
