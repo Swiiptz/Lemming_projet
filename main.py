@@ -1,13 +1,14 @@
 carte = open("carte.txt")
 
-    
+
+
+
 class Lemmings :
-    def __init__(self):
+    def __init__(self, grotte):
         self.l = 0
         self.c = 1
         self.d = 1
-        self.jeu = Jeu(carte)
-        self.carte = self.jeu.grotte
+        self.carte = grotte
     def __str__(self):
         if self.d == 1:
             return ">"
@@ -16,13 +17,10 @@ class Lemmings :
     def action(self):
         if self.carte[self.l+1][self.c].libre():
             self.l +=1
-        if self.carte[self.l-1][self.c].libre()==False:
-            self.l -=1
-        if self.carte[self.l][self.c+1].libre() and self.d == 1:
-            self.d *=-1
-        if self.carte[self.l][self.c-1].libre() and self.d == -1:
-            self.d*=-1
-        self.c += self.d
+        #elif self.carte[self.l][self.c+1].libre() and :
+        #    self.d *=-1
+        elif self.carte[self.l][self.c+1].libre():
+            self.c += self.d
     def sort(self):
         del self     
 
@@ -34,7 +32,7 @@ class Case :
         return self.caractere
 
     def libre(self):
-        if self.type == " " or "O":
+        if self.type == (" " or "O"):
             return True 
         else :
             return False
@@ -51,6 +49,7 @@ class Jeu:
         self.lemmings = []
 
     def affiche(self):
+        """affiche la carte actuelle ainsi que les lemmings qui sont dessus"""
         copie_carte = self.grotte
 
         for lemming in self.lemming : #on remplace les cases par les lemmings aux bonnes cos
@@ -63,15 +62,15 @@ class Jeu:
             print(ligne_temp)
 
 
-
     def tour(self):
+        """joue un tour"""
         for i in self.lemmings :
             i.action()
         self.affiche()
             
 
-
     def demarre(self):
+        """lance le jeu"""
         commande = ""
         while commande != "q" :
             print(f"Que voulez-vous faire :\nl: ajouter un lemming et jouer (nb de lemmings:{len(self.lemmings)})\nq : quitter\nEntrée pour jouer")
@@ -79,7 +78,7 @@ class Jeu:
             if commande == "q" :
                 break
             if commande == "l":
-                self.lemmings.append(Lemmings())
+                self.lemmings.append(Lemmings(self.grotte))
                 self.tour()
             else :
                 self.tour()
