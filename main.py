@@ -3,11 +3,15 @@ carte = open("carte.txt")
 
 
 class Lemmings :
-    def __init__(self, grotte):
+    def __init__(self):
         self.l = 0
         self.c = 1
         self.d = 1
-        self.carte = grotte
+        self.jeu = Jeu(carte)
+        print("///\n",Jeu(carte), carte)
+
+        self.carte = self.jeu.grotte
+        print(self.carte)
     def __str__(self):
         if self.d == 1:
             return ">"
@@ -16,10 +20,13 @@ class Lemmings :
     def action(self):
         if self.carte[self.l+1][self.c].libre():
             self.l +=1
-        #elif self.carte[self.l][self.c+1].libre() and :
-        #    self.d *=-1
-        elif self.carte[self.l][self.c+1].libre():
-            self.c += self.d
+        if self.carte[self.l-1][self.c].libre()==False:
+            self.l -=1
+        if self.carte[self.l][self.c+1].libre() and self.d == 1:
+            self.d *=-1
+        if self.carte[self.l][self.c-1].libre() and self.d == -1:
+            self.d*=-1
+        self.c += self.d
     def sort(self):
         del self     
 
@@ -91,11 +98,12 @@ class Jeu:
             if commande == "q" :
                 break
             if commande == "l":
-                self.lemmings.append(Lemmings(self.grotte))
+                self.lemmings.append(Lemmings())
                 self.tour()
             else :
                 self.tour()
 
 
 
-test = Jeu(carte).affiche()
+test = Jeu(carte).demarre()
+
