@@ -42,7 +42,10 @@ class Case :
             self.terrain = "sortie"
 
     def __str__(self):
-        return self.caractere
+        if self.Lemming !=None :
+            return self.Lemming.dir
+        else : 
+            return self.caractere
 
     def libre(self):
         if self.Lemming  :
@@ -105,5 +108,5 @@ class Jeu:
 
 
 
-test = Jeu(carte).demarre()
+print(Jeu(carte).grotte)
 
