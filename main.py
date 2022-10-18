@@ -48,7 +48,7 @@ class Case :
             return self.caractere
 
     def libre(self):
-        if self.Lemming  :
+        if self.Lemming != None  :
             return False
         elif self.terrain == ("vide" or "sortie"):
             return True 
