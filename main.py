@@ -12,22 +12,14 @@ class Lemmings :
             return "<"
     def action(self):
         self.carte[self.l][self.c].depart()
-        print(self.carte[self.l][self.c])
-        if self.carte[self.l+1][self.c].libre():
-            print(self.carte[self.l+1][self.c].libre(),"1")
-            self.l +=1
-        elif self.carte[self.l][self.c+1].libre() and self.d == 1:
-            print(self.carte[self.l][self.c+1].libre(),"2")
-            self.d *=1
-            self.c +=1
-        elif self.carte[self.l][self.c-1].libre() and self.d == -1:
-            print(self.carte[self.l][self.c-1].libre(),"3")
-            self.d*=-1
-            self.c +=-1
-        elif self.carte[self.l-1][self.c].libre():
-            print(self.carte[self.l-1][self.c].libre(),"4")
-            self.l -=1
-
+        
+        if self.carte[self.l+1][self.c].libre() :
+            self.l += 1
+        elif self.carte[self.l][self.c + self.d].libre() :
+            self.c += self.d
+        else :
+            d *=1
+            
         self.carte[self.l][self.c].arrivee(self)
 class Case :
     def __init__(self, caractere):
@@ -90,7 +82,7 @@ class Jeu:
         """lance le jeu"""
         commande = ""
         while commande != "q" :
-            print(f"Que voulez-vous faire :\nl: ajouter un lemming et jouer (nb de lemmings:{len(self.lemmings)})\nq : quitter\nEntree pour jouer")
+            #print(f"Que voulez-vous faire :\nl: ajouter un lemming et jouer (nb de lemmings:{len(self.lemmings)})\nq : quitter\nEntree pour jouer")
             commande = input()
             if commande == "q" :
                 break
