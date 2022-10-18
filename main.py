@@ -1,5 +1,5 @@
 class Lemmings :
-    def __init__(self,jeu)->Lemmings:
+    def __init__(self,jeu):
         self.l = 0
         self.c = 1
         self.d = 1
@@ -33,7 +33,7 @@ class Lemmings :
                 return True
         
 class Case :
-    def __init__(self, caractere:str)->Case:
+    def __init__(self, caractere:str):
         self.caractere = caractere
         self.Lemming = None
         if caractere == "#" :
@@ -74,7 +74,7 @@ class Case :
         self.Lemming = None
         
 class Jeu:
-    def __init__(self) -> Jeu:   
+    def __init__(self) :   
         """cree un objet jeu"""  
         carte = int(input("Sur quelle carte voulez-vous jouer ?\ncarte 1 : 1\ncarte 2 : 2\n"))
         if carte == 1 :
