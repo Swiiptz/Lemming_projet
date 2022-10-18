@@ -93,8 +93,6 @@ class Jeu:
         
     def tour(self):
         """joue un tour"""
-
-        self.affiche()
         n=0
         for i in self.lemmings :
             
@@ -102,12 +100,13 @@ class Jeu:
                 self.lemmings.pop(n)
             n+=1
             i.action()
-            
+        self.affiche()
 
     def demarre(self):
         """lance le jeu"""
         commande = ""
         n_tour = 0
+        self.affiche()
         while commande != "q" :
             n_tour += 1
             print(f"Tour n°{n_tour}")
