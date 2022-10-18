@@ -95,11 +95,9 @@ class Jeu:
         """joue un tour"""
         n=0
         for i in self.lemmings :
-            
-            if i.action()==-1:
-                self.lemmings.pop(n)
-            n+=1
             i.action()
+
+
         self.affiche()
 
     def demarre(self):
