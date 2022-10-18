@@ -11,10 +11,10 @@ class Lemmings :
         if self.d == -1:
             return "<"
     def action(self):
+        if self.carte[self.l][self.c].sortie():
+            return -1
         self.carte[self.l][self.c].depart()
-        print("///")
-        print(self.carte[self.l][self.c].Lemming,"/",self.carte[self.l][self.c].caractere, "/", self.carte[self.l][self.c],"/")
-        print("///")
+
         
         if self.carte[self.l+1][self.c].libre() :
             self.l += 1
@@ -22,8 +22,13 @@ class Lemmings :
             self.c += self.d
         else :
             self.d *=-1
-            
+        
         self.carte[self.l][self.c].arrivee(self)
+        
+        def sort(self):
+            if self.terrain == "sortie":
+                return True
+        
 class Case :
     def __init__(self, caractere):
         self.caractere = caractere
@@ -54,7 +59,8 @@ class Case :
     
     def sortie(self):
         if self.terrain == "sortie" :
-            self.Lemming = None
+            self.Lemming =None
+            return True
         
     def depart(self) :
         self.Lemming = None
@@ -76,8 +82,15 @@ class Jeu:
         """joue un tour"""
         #print(self.lemmings)
         self.affiche()
+        n=0
         for i in self.lemmings :
+            
+            if i.action()==-1:
+                self.lemmings.pop(n)
+            n+=1
             i.action()
+            
+           
         
             
 
