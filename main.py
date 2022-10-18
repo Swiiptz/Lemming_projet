@@ -12,19 +12,23 @@ class Lemmings :
             return "<"
     def action(self):
         self.carte[self.l][self.c].depart()
+        print(self.carte[self.l][self.c])
         if self.carte[self.l+1][self.c].libre():
+            print(self.carte[self.l+1][self.c].libre(),"1")
             self.l +=1
         elif self.carte[self.l][self.c+1].libre() and self.d == 1:
-            self.d *=-1
+            print(self.carte[self.l][self.c+1].libre(),"2")
+            self.d *=1
             self.c +=1
         elif self.carte[self.l][self.c-1].libre() and self.d == -1:
+            print(self.carte[self.l][self.c-1].libre(),"3")
             self.d*=-1
             self.c +=-1
         elif self.carte[self.l-1][self.c].libre():
+            print(self.carte[self.l-1][self.c].libre(),"4")
             self.l -=1
 
         self.carte[self.l][self.c].arrivee(self)
-        
 class Case :
     def __init__(self, caractere):
         self.caractere = caractere
@@ -76,9 +80,10 @@ class Jeu:
     def tour(self):
         """joue un tour"""
         #print(self.lemmings)
+        self.affiche()
         for i in self.lemmings :
             i.action()
-        self.affiche()
+        
             
 
     def demarre(self):
@@ -92,6 +97,8 @@ class Jeu:
             if commande == "l":
                 new_lemmings = Lemmings(Jeu())
                 self.lemmings.append(new_lemmings)
+                for i in self.lemmings:
+                    print(i.l,i.c)
                 self.tour()
             else :
                 self.tour()
