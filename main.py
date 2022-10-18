@@ -12,13 +12,16 @@ class Lemmings :
             return "<"
     def action(self):
         self.carte[self.l][self.c].depart()
+        print("///")
+        print(self.carte[self.l][self.c].Lemming,"/",self.carte[self.l][self.c].caractere, "/", self.carte[self.l][self.c],"/")
+        print("///")
         
         if self.carte[self.l+1][self.c].libre() :
             self.l += 1
         elif self.carte[self.l][self.c + self.d].libre() :
             self.c += self.d
         else :
-            d *=1
+            self.d *=-1
             
         self.carte[self.l][self.c].arrivee(self)
 class Case :
@@ -61,8 +64,8 @@ class Jeu:
         self.grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()]
         self.lemmings = []
     def affiche(self):
-        for i in self.lemmings:
-            self.grotte[i.l][i.c]=i.__str__()
+        #for i in self.lemmings:
+        #    self.grotte[i.l][i.c]=i.__str__()
         for case_l in self.grotte: #on prend la ligne
             ligne_temp = ""
             for case_l_c in case_l : #puis case par case
@@ -87,10 +90,9 @@ class Jeu:
             if commande == "q" :
                 break
             if commande == "l":
-                new_lemmings = Lemmings(Jeu())
+                new_lemmings = Lemmings(self)
                 self.lemmings.append(new_lemmings)
-                for i in self.lemmings:
-                    print(i.l,i.c)
+  
                 self.tour()
             else :
                 self.tour()
