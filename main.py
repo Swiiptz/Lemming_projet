@@ -1,3 +1,4 @@
+import os
 class Lemmings :
     def __init__(self,jeu):
         self.l = 0
@@ -72,6 +73,7 @@ class Jeu:
     def affiche(self):
         #for i in self.lemmings:
         #    self.grotte[i.l][i.c]=i.__str__()
+        
         for case_l in self.grotte: #on prend la ligne
             ligne_temp = ""
             for case_l_c in case_l : #puis case par case
@@ -90,16 +92,13 @@ class Jeu:
             n+=1
             i.action()
             
-           
-        
-            
-
     def demarre(self):
         """lance le jeu"""
         commande = ""
+        print(f"Que voulez-vous faire :\nl: ajouter un lemming et jouer (nb de lemmings:{len(self.lemmings)})\nq : quitter\nEntree pour jouer")
         while commande != "q" :
-            #print(f"Que voulez-vous faire :\nl: ajouter un lemming et jouer (nb de lemmings:{len(self.lemmings)})\nq : quitter\nEntree pour jouer")
             commande = input()
+            os.system('cls')
             if commande == "q" :
                 break
             if commande == "l":
