@@ -11,22 +11,15 @@ class Lemmings :
         if self.d == -1:
             return "<"
     def action(self):
-        self.carte[self.l][self.c].depart()
-        print(self.carte[self.l][self.c])
-        if self.carte[self.l+1][self.c].libre():
-            #print(self.carte[self.l+1][self.c].libre(),"1")
-            self.l +=1
-            self.ok = 0
-        elif self.carte[self.l][self.c+1].libre()==False and self.d == 1:
-            #print(self.carte[self.l][self.c+1].libre(),"2")
+        if self.carte[self.l][self.c].sortir():
+            return -1
+        self.carte[self.l][self.c].depart()     
+        if self.carte[self.l+1][self.c].libre() :    
+            self.l += 1
+        elif self.carte[self.l][self.c + self.d].libre() :
+            self.c += self.d
+        else :
             self.d *=-1
-        elif self.carte[self.l][self.c-1].libre()==False and self.d == -1:
-            self.d*=-1
-        elif self.carte[self.l-1][self.c].libre():
-            #print(self.carte[self.l-1][self.c].libre(),"4")
-            self.l -=1
-        if self.ok !=0:
-            self.c+=self.d
         self.carte[self.l][self.c].arrivee(self)
 class Case :
     def __init__(self, caractere):
@@ -58,7 +51,7 @@ class Case :
     
     def sortie(self):
         if self.terrain == "sortie" :
-            self.Lemming = None
+            return True
         
     def depart(self) :
         self.Lemming = None
@@ -79,9 +72,15 @@ class Jeu:
     def tour(self):
         """joue un tour"""
         #print(self.lemmings)
+        n=0
         self.affiche()
         for i in self.lemmings :
+
+            if i.action()==-1:
+                self.lemmings.pop(n)
+            n+=1
             i.action()
+            
         
             
 
@@ -89,15 +88,13 @@ class Jeu:
         """lance le jeu"""
         commande = ""
         while commande != "q" :
-            #print(f"Que voulez-vous faire :\nl: ajouter un lemming et jouer (nb de lemmings:{len(self.lemmings)})\nq : quitter\nEntree pour jouer")
+            print(f"Que voulez-vous faire :\nl: ajouter un lemming et jouer (nb de lemmings:{len(self.lemmings)})\nq : quitter\nEntree pour jouer")
             commande = input()
             if commande == "q" :
                 break
             if commande == "l":
                 new_lemmings = Lemmings(Jeu())
                 self.lemmings.append(new_lemmings)
-                for i in self.lemmings:
-                    print(i.l,i.c)
                 self.tour()
             else :
                 self.tour()
