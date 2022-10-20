@@ -2,7 +2,7 @@ from random import randint
 
 def tkt(longueur:int, hauteur:int):
     tab = []
-    tab.append(["#"*(longueur)])
+    tab.append(["#"," ","#"*(longueur-2)])
     longueur-=2
     tab_l = []
 
@@ -11,11 +11,12 @@ def tkt(longueur:int, hauteur:int):
             tab_l = ["#"," "*longueur,"#"]
         else :
             gauche = longueur
-            gauche -= randint(1,8)
+            gauche -= randint(1,longueur-1)
             droite = longueur-1 - gauche
             tab_l = ["#",gauche*"#"," ",droite*"#","#"]
         tab.append(tab_l)
-    tab.append(["#"*(longueur+2)])
+    
+    tab.append(["O"*(longueur+2)])
     affiche = ""
     for i in tab :
         for z in i :
@@ -23,4 +24,4 @@ def tkt(longueur:int, hauteur:int):
         affiche += "\n"
     return affiche
         
-print(tkt(10,10))
+print(tkt(15,10))
