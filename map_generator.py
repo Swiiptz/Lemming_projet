@@ -22,6 +22,7 @@ def tkt(longueur:int, hauteur:int):
         for z in i :
             affiche += z
         affiche += "\n"
-    return affiche
+    file = open("carte2.txt",'w')
+    file.write(affiche)
         
-print(tkt(15,10))
+#print(tkt(15,10))

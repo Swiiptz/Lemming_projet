@@ -1,3 +1,5 @@
+from map_generator import *
+
 class Lemmings :
     def __init__(self,jeu):
         self.l = 0
@@ -76,10 +78,11 @@ class Case :
 class Jeu:
     def __init__(self) :   
         """cree un objet jeu"""  
-        carte = int(input("Sur quelle carte voulez-vous jouer ?\ncarte 1 : 1\ncarte 2 : 2\n"))
+        carte = int(input("Sur quelle carte voulez-vous jouer ?\ncarte 1 : 1\ncarte aléatoire : 2\n"))
         if carte == 1 :
             carte = open("carte.txt")
         if carte == 2 :
+            tkt(randint(6,20), randint(6,15))
             carte = open("carte2.txt")
         self.grotte = [[Case(caractere) for caractere in ligne if caractere !='\n'] for ligne in carte.readlines()]
         self.lemmings = []
