@@ -1,13 +1,13 @@
 from random import randint
 
 def tkt(longueur:int, hauteur:int):
-    tab_l = ["#"*longueur]
-    longueur-=2
     tab = []
+    tab.append(["#"*(longueur)])
+    longueur-=2
     tab_l = []
-    tab.append(tab_l)
+
     for i in range(longueur) :
-        if i%2 != 0: #alors nb impaire
+        if i%2 == 0: #alors nb impaire
             tab_l = ["#"," "*longueur,"#"]
         else :
             gauche = longueur
