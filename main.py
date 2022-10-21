@@ -24,6 +24,8 @@ class Lemmings :
             self.l += 1
         elif self.carte[self.l][self.c + self.d].libre() :
             self.c += self.d
+        elif self.carte[self.l][self.c + self.d].terrain == "lader" :
+            self.l -= 1
         else :
             self.d *=-1
         
@@ -44,6 +46,8 @@ class Case :
             self.terrain = "vide"
         elif caractere == "O" :
             self.terrain = "sortie"
+        elif caractere == "^" :
+            self.terrain = "lader"
 
     def __str__(self):
         """valeur par défaut pour print(Case)"""
