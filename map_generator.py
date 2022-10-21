@@ -10,7 +10,9 @@ def tkt(longueur:int, hauteur:int):
         liste_structures = ['normal']*5+ ['trou']
         structure = liste_structures[randint(0,len(liste_structures)-1)]
         if i%2 != 0: #alors nb paire
-            tab_l = ["#"," "*longueur,"#"]
+            temp = randint(0, longueur)
+            tab_l = ["#"]+[" "]*longueur+["#"]
+            tab_l[temp] = "^"
             i-=1
             tab.append(tab_l)
         elif i >=3 and structure == 'trou' :
