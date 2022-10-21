@@ -23,14 +23,16 @@ def tkt(longueur:int, hauteur:int):
             print(passage)
             #construction de la structure
             tab_l = ["#"]+gauche*["#"]+[" "]+droite*["#"]+["#"]
-            
             tab_l[passage] = " "
+            print(tab_l,"\n")
             tab.append(tab_l)
-            tab_l = ["#"]+gauche-1*[" "]+["# #"]+droite-1*[" "]+["#"]
-            tab_l[passage] = " "
+            tab_l = ["#"]+(gauche-1)*[" "]+["# #"]+(droite-1)*[" "]+["#"]
+
+
             tab.append(tab_l)
-            tab_l = ["#"]+gauche-1*[" "]+["###"]+droite-1*[" "]+["#"]
-            tab_l[passage] = " "
+            tab_l = ["#"]+(gauche-1)*[" "]+["###"]+(droite-1)*[" "]+["#"]
+
+
             tab.append(tab_l)
             i-=3
         else :
