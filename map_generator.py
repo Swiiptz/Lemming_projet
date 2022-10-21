@@ -1,20 +1,46 @@
-from random import randint
+from random import *
 
 def tkt(longueur:int, hauteur:int):
     tab = []
     tab.append(["#"," ","#"*(longueur-2)])
     longueur-=2
     tab_l = []
-
-    for i in range(longueur) :
-        if i%2 == 0: #alors nb impaire
+    i = longueur
+    while i != 0 :
+        liste_structures = ['normal']*5+ ['trou']
+        structure = liste_structures[randint(0,len(liste_structures)-1)]
+        if i%2 != 0: #alors nb paire
             tab_l = ["#"," "*longueur,"#"]
+            i-=1
+            tab.append(tab_l)
+        elif i >=3 and structure == 'trou' :
+            #setup des variables
+            gauche = longueur
+            gauche -= randint(1,longueur-1)
+            droite = longueur-1 - gauche
+            temp = [randint(1,gauche),randint(droite,longueur-1)]
+            passage = choice(temp)
+            print(passage)
+            #construction de la structure
+            tab_l = ["#"]+gauche*["#"]+[" "]+droite*["#"]+["#"]
+            
+            tab_l[passage] = " "
+            tab.append(tab_l)
+            tab_l = ["#"]+gauche-1*[" "]+["# #"]+droite-1*[" "]+["#"]
+            tab_l[passage] = " "
+            tab.append(tab_l)
+            tab_l = ["#"]+gauche-1*[" "]+["###"]+droite-1*[" "]+["#"]
+            tab_l[passage] = " "
+            tab.append(tab_l)
+            i-=3
         else :
             gauche = longueur
             gauche -= randint(1,longueur-1)
             droite = longueur-1 - gauche
             tab_l = ["#",gauche*"#"," ",droite*"#","#"]
-        tab.append(tab_l)
+            i-=1
+            tab.append(tab_l)
+        
     
     tab.append(["O"*(longueur+2)])
     affiche = ""
@@ -24,5 +50,6 @@ def tkt(longueur:int, hauteur:int):
         affiche += "\n"
     file = open("carte2.txt",'w')
     file.write(affiche)
+    return affiche
         
-#print(tkt(15,10))
+print(tkt(15,10))

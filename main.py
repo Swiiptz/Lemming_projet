@@ -99,8 +99,6 @@ class Jeu:
         n=0
         for i in self.lemmings :
             i.action()
-
-
         self.affiche()
 
     def demarre(self):
