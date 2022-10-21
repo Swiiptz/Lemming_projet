@@ -20,21 +20,17 @@ def tkt(longueur:int, hauteur:int):
             droite = longueur-1 - gauche
             temp = [randint(1,gauche),randint(droite,longueur-1)]
             passage = choice(temp)
-            print(passage)
+
             #construction de la structure
             tab_l = ["#"]+gauche*["#"]+[" "]+droite*["#"]+["#"]
             tab_l[passage] = " "
-            print(tab_l,"\n")
             tab.append(tab_l)
             tab_l = ["#"]+(gauche-1)*[" "]+["# #"]+(droite-1)*[" "]+["#"]
-
-
             tab.append(tab_l)
             tab_l = ["#"]+(gauche-1)*[" "]+["###"]+(droite-1)*[" "]+["#"]
-
-
             tab.append(tab_l)
             i-=3
+            
         else :
             gauche = longueur
             gauche -= randint(1,longueur-1)
